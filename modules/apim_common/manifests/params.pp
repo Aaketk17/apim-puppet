@@ -90,7 +90,7 @@ class apim_common::params {
 
   # ----- api-manager.xml config params -----
   $analytics_enabled = 'false'
-  $analytics_config_endpoint = 'https://localhost:8080/auth/v1'
+  $analytics_config_endpoint = 'https://15.206.128.170:8080/auth/v1'
   $analytics_auth_token = ''
 
   $ai_enabled = 'true'
@@ -116,23 +116,23 @@ class apim_common::params {
       gateway_type                          => 'Regular',
       provider                              => 'wso2',
       description                           => 'This is a hybrid gateway that handles both production and sandbox token traffic.',
-      server_url                            => 'https://localhost:${mgt.transport.https.port}${carbon.context}services/',
-      ws_endpoint                           => 'ws://localhost:9099',
-      wss_endpoint                          => 'wss://localhost:8099',
-      http_endpoint                         => 'http://localhost:8280',
-      https_endpoint                        => 'https://localhost:8243',
-      websub_event_receiver_http_endpoint   => 'http://localhost:9021',
-      websub_event_receiver_https_endpoint  => 'https://localhost:8021'
+      server_url                            => 'https://15.206.128.170:${mgt.transport.https.port}${carbon.context}services/',
+      ws_endpoint                           => 'ws://15.206.128.170:9099',
+      wss_endpoint                          => 'wss://15.206.128.170:8099',
+      http_endpoint                         => 'http://15.206.128.170:8280',
+      https_endpoint                        => 'https://15.206.128.170:8243',
+      websub_event_receiver_http_endpoint   => 'http://15.206.128.170:9021',
+      websub_event_receiver_https_endpoint  => 'https://15.206.128.170:8021'
     }
   ]
 
   $gateway_labels = ["Default"]
 
-  $key_manager_server_url = 'https://localhost:${mgt.transport.https.port}${carbon.context}services/'
-  $key_validator_thrift_server_host = 'localhost'
+  $key_manager_server_url = 'https://15.206.128.170:${mgt.transport.https.port}${carbon.context}services/'
+  $key_validator_thrift_server_host = '15.206.128.170'
 
-  $api_devportal_url = 'https://localhost:${mgt.transport.https.port}/devportal'
-  $throttle_service_url = 'https://localhost:${mgt.transport.https.port}${carbon.context}services/'
+  $api_devportal_url = 'https://15.206.128.170:${mgt.transport.https.port}/devportal'
+  $throttle_service_url = 'https://15.206.128.170:${mgt.transport.https.port}${carbon.context}services/'
 
   $traffic_manager_receiver_url = 'tcp://${carbon.local.ip}:${receiver.url.port}'
   $traffic_manager_auth_url = 'ssl://${carbon.local.ip}:${auth.url.port}'
@@ -173,7 +173,7 @@ class apim_common::params {
   $admin_username = 'admin'
   $admin_password = 'admin'
 
-  $event_listener_notification_endpoint = 'https://localhost:${mgt.transport.https.port}/internal/data/v1/notify'
+  $event_listener_notification_endpoint = 'https://15.206.128.170:${mgt.transport.https.port}/internal/data/v1/notify'
 
   $token_exchange_enable = true
   $token_exchange_allow_refresh_tokens = true
