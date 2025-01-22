@@ -167,7 +167,21 @@ class apim_common inherits apim_common::params {
 
   exec { 'systemctl daemon-reload':
     path        => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
-    subscribe   => File["/etc/systemd/system/${wso2_service_name}.service"],
+    subscribe   => File["c/${wso2_service_name}.service"],
     refreshonly => true,
+  }
+
+  exec { 'run_whoami':
+    command => '/usr/bin/whoami',
+    path    => ['/usr/bin', '/bin'],  # Ensure that the system PATH is set correctly
+    unless  => 'test -f /tmp/whoami_output',  # Optional: Check if the output file already exists
+    creates => '/tmp/whoami_output',  # Optional: Use this to run it only once
+    notify  => Exec['print_user'],  # Notify to print the output (optional)
+  }
+
+# This will print the output of the whoami command to a file
+  file { '/tmp/whoami_output':
+    ensure  => 'file',
+    content => "This file was created by Puppet with the whoami command output",
   }
 }
