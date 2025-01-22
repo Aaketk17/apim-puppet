@@ -139,16 +139,16 @@ class apim_common::params {
 
   # ----- Master-datasources config params -----
 
-  $wso2am_db_url = 'jdbc:h2:./repository/database/WSO2AM_DB;DB_CLOSE_ON_EXIT=FALSE'
-  $wso2am_db_username = 'wso2carbon'
-  $wso2am_db_password = 'wso2carbon'
-  $wso2am_db_type = 'h2'
+  $wso2am_db_url = 'jdbc:postgresql://wso2-apim.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:5432/apim_db;DB_CLOSE_ON_EXIT=FALSE'
+  $wso2am_db_username = 'wso2apim'
+  $wso2am_db_password = 'suhtoN-9zirmy-qibfor'
+  $wso2am_db_type = 'postgre'
   $wso2am_db_validation_query = 'SELECT 1'
 
-  $wso2shared_db_url = 'jdbc:h2:./repository/database/WSO2SHARED_DB;DB_CLOSE_ON_EXIT=FALSE'
-  $wso2shared_db_username = 'wso2carbon'
-  $wso2shared_db_password = 'wso2carbon'
-  $wso2shared_db_type = 'h2'
+  $wso2shared_db_url = 'jdbc:postgresql://wso2-apim.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:5432/shared_db;DB_CLOSE_ON_EXIT=FALSE'
+  $wso2shared_db_username = 'wso2apim'
+  $wso2shared_db_password = 'suhtoN-9zirmy-qibfor'
+  $wso2shared_db_type = 'postgre'
   $wso2shared_db_validation_query = 'SELECT 1'
 
   # ----- Carbon.xml config params -----

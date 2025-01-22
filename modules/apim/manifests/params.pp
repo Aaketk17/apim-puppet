@@ -19,15 +19,17 @@
 class apim::params inherits apim_common::params {
 
   $start_script_template = 'bin/api-manager.sh'
-  $jvmxms = '256m'
-  $jvmxmx = '512m'
+  $jvmxms = '1g'
+  $jvmxmx = '2g'
 
   $template_list = [
     'repository/conf/deployment.toml'
   ]
 
   # Define file list
-  $file_list = []
+  $file_list = [
+    'repository/components/lib'
+  ]
 
   # Define remove file list
   $file_removelist = []
