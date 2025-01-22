@@ -93,7 +93,7 @@ class apim_common::params {
   $analytics_config_endpoint = 'https://15.206.128.170:8080/auth/v1'
   $analytics_auth_token = ''
 
-  $ai_enabled = 'true'
+  $ai_enabled = 'false'
   $ai_endpoint = ''
   $ai_token = ''
 
