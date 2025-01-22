@@ -167,7 +167,7 @@ class apim_common inherits apim_common::params {
 
   exec { 'systemctl daemon-reload':
     path        => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
-    subscribe   => File["c/${wso2_service_name}.service"],
+    subscribe   => File["/etc/systemd/system/${wso2_service_name}.service"],
     refreshonly => true,
   }
 }
