@@ -22,7 +22,7 @@ class apim_common::params {
   # Set the location the product packages should reside in (eg: "local" in the /files directory, "remote" in a remote location)
   $pack_location = "remote"
   # $pack_location = "local"
-  $remote_jdk = "https://corretto.aws/downloads/latest/amazon-corretto-21-x64-linux-jdk.tar.gz"
+  $remote_jdk = "https://corretto.aws/downloads/latest/amazon-corretto-17-x64-linux-jdk.tar.gz"
 
   $user = 'wso2carbon'
   $user_group = 'wso2'
