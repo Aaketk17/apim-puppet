@@ -126,7 +126,7 @@ class apim_common::params {
       websub_event_receiver_https_endpoint  => 'https://localhost:8021'
     }
   ]
-  } else $facts['ec2_metadata']['tags']['instance']['Node'] == 'Two' {
+  } elseif $facts['ec2_metadata']['tags']['instance']['Node'] == 'Two' {
       $gateway_environments = [
     {
       type                                  => 'hybrid',
