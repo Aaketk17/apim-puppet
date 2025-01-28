@@ -109,22 +109,41 @@ class apim_common::params {
     }
   ]
 
-  $gateway_environments = [
+  if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
+      $gateway_environments = [
     {
       type                                  => 'hybrid',
       name                                  => 'Default',
       gateway_type                          => 'Regular',
       provider                              => 'wso2',
       description                           => 'This is a hybrid gateway that handles both production and sandbox token traffic.',
-      server_url                            => 'https://13.233.224.1:${mgt.transport.https.port}${carbon.context}services/',
-      ws_endpoint                           => 'ws://13.233.224.1:9099',
-      wss_endpoint                          => 'wss://13.233.224.1:8099',
-      http_endpoint                         => 'http://13.233.224.1:8280',
-      https_endpoint                        => 'https://13.233.224.1:8243',
-      websub_event_receiver_http_endpoint   => 'http://13.233.224.1:9021',
-      websub_event_receiver_https_endpoint  => 'https://13.233.224.1:8021'
+      server_url                            => 'https://localhost:${mgt.transport.https.port}${carbon.context}services/',
+      ws_endpoint                           => 'ws://<Node two>:9099',
+      wss_endpoint                          => 'wss://<Node two>:8099',
+      http_endpoint                         => 'http://<Node two>:8280',
+      https_endpoint                        => 'https://<Node two>:8243',
+      websub_event_receiver_http_endpoint   => 'http://localhost:9021',
+      websub_event_receiver_https_endpoint  => 'https://localhost:8021'
     }
   ]
+  } else $facts['ec2_metadata']['tags']['instance']['Node'] == 'Two' {
+      $gateway_environments = [
+    {
+      type                                  => 'hybrid',
+      name                                  => 'Default',
+      gateway_type                          => 'Regular',
+      provider                              => 'wso2',
+      description                           => 'This is a hybrid gateway that handles both production and sandbox token traffic.',
+      server_url                            => 'https://localhost:${mgt.transport.https.port}${carbon.context}services/',
+      ws_endpoint                           => 'ws://<Node one>:9099',
+      wss_endpoint                          => 'wss://<Node one>:8099',
+      http_endpoint                         => 'http://<Node one>:8280',
+      https_endpoint                        => 'https://<Node one>:8243',
+      websub_event_receiver_http_endpoint   => 'http://localhost:9021',
+      websub_event_receiver_https_endpoint  => 'https://localhost:8021'
+    }
+  ]
+  }
 
   $gateway_labels = ["Default"]
 
