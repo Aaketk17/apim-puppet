@@ -116,7 +116,7 @@ class apim_common::params {
 
   if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
     $event_duplicate_url = 'tcp://apim-node-2.example.com:5673'
-    $throttle_decision_endpoints = '"tcp://apim-node-1.example.com:5672"'
+    $throttle_decision_endpoints = 'tcp://apim-node-1.example.com:5672'
     $throttling_url_group = [
       {
         traffic_manager_urls      => 'tcp://apim-node-1.example.com:9611',
