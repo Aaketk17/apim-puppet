@@ -90,83 +90,80 @@ class apim_common::params {
 
   # ----- api-manager.xml config params -----
   $analytics_enabled = 'false'
-  $analytics_config_endpoint = 'https://13.233.224.1:8080/auth/v1'
+  $analytics_config_endpoint = 'https://APIM-341331015.ap-south-1.elb.amazonaws.com/auth/v1'
   $analytics_auth_token = ''
 
   $ai_enabled = 'false'
   $ai_endpoint = ''
   $ai_token = ''
 
-  $throttle_decision_endpoints = '"tcp://tm1.local:5672","tcp://tm2.local:5672"'
-  $throttling_url_group = [
+  $gateway_environments = [
     {
-      traffic_manager_urls      => '"tcp://tm1.local:9611"',
-      traffic_manager_auth_urls => '"ssl://tm1.local:9711"'
-    },
-    {
-      traffic_manager_urls      => '"tcp://tm2.local:9611"',
-      traffic_manager_auth_urls => '"ssl://tm2.local:9711"'
+      type                                  => 'hybrid',
+      name                                  => 'Default',
+      gateway_type                          => 'Regular',
+      provider                              => 'wso2',
+      description                           => 'This is a hybrid gateway that handles both production and sandbox token traffic.',
+      server_url                            => 'https://localhost:${mgt.transport.https.port}${carbon.context}services/',
+      ws_endpoint                           => 'ws://localhost:9099',
+      wss_endpoint                          => 'wss://localhost:8099',
+      http_endpoint                         => 'http://APIM-341331015.ap-south-1.elb.amazonaws.com',
+      https_endpoint                        => 'https://APIM-341331015.ap-south-1.elb.amazonaws.com',
+      websub_event_receiver_http_endpoint   => 'http://localhost:9021',
+      websub_event_receiver_https_endpoint  => 'https://localhost:8021'
     }
   ]
 
   if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
-      $gateway_environments = [
-    {
-      type                                  => 'hybrid',
-      name                                  => 'Default',
-      gateway_type                          => 'Regular',
-      provider                              => 'wso2',
-      description                           => 'This is a hybrid gateway that handles both production and sandbox token traffic.',
-      server_url                            => 'https://localhost:${mgt.transport.https.port}${carbon.context}services/',
-      ws_endpoint                           => 'ws://<Node two>:9099',
-      wss_endpoint                          => 'wss://<Node two>:8099',
-      http_endpoint                         => 'http://<Node two>:8280',
-      https_endpoint                        => 'https://<Node two>:8243',
-      websub_event_receiver_http_endpoint   => 'http://localhost:9021',
-      websub_event_receiver_https_endpoint  => 'https://localhost:8021'
-    }
-  ]
-  } elsif $facts['ec2_metadata']['tags']['instance']['Node'] == 'Two' {
-      $gateway_environments = [
-    {
-      type                                  => 'hybrid',
-      name                                  => 'Default',
-      gateway_type                          => 'Regular',
-      provider                              => 'wso2',
-      description                           => 'This is a hybrid gateway that handles both production and sandbox token traffic.',
-      server_url                            => 'https://localhost:${mgt.transport.https.port}${carbon.context}services/',
-      ws_endpoint                           => 'ws://<Node one>:9099',
-      wss_endpoint                          => 'wss://<Node one>:8099',
-      http_endpoint                         => 'http://<Node one>:8280',
-      https_endpoint                        => 'https://<Node one>:8243',
-      websub_event_receiver_http_endpoint   => 'http://localhost:9021',
-      websub_event_receiver_https_endpoint  => 'https://localhost:8021'
-    }
-  ]
+    $event_duplicate_url = '"tcp://apim-node-2.example.com:5673"'
+    $throttle_decision_endpoints = '"tcp://apim-node-1.example.com:5672"'
+    $throttling_url_group = [
+      {
+        traffic_manager_urls      => '"tcp://apim-node-1.example.com:9611"',
+        traffic_manager_auth_urls => '"ssl://apim-node-1.example.com:9711"'
+      },
+      {
+        traffic_manager_urls      => '"tcp://apim-node-2.example.com:9612"',
+        traffic_manager_auth_urls => '"ssl://apim-node-2.example.com:9712"'
+      }
+    ]
+  } else $facts['ec2_metadata']['tags']['instance']['Node'] == 'Two' {
+    $event_duplicate_url = '"tcp://apim-node-1.example.com:5672"'
+    $throttle_decision_endpoints = '"tcp://apim-node-2.example.com:5673"'
+    $throttling_url_group = [
+      {
+        traffic_manager_urls      => '"tcp://apim-node-1.example.com:9611"',
+        traffic_manager_auth_urls => '"ssl://apim-node-1.example.com:9711"'
+      },
+      {
+        traffic_manager_urls      => '"tcp://apim-node-2.example.com:9612"',
+        traffic_manager_auth_urls => '"ssl://apim-node-2.example.com:9712"'
+      }
+    ]
   }
 
   $gateway_labels = ["Default"]
 
-  $key_manager_server_url = 'https://13.233.224.1:${mgt.transport.https.port}${carbon.context}services/'
-  $key_validator_thrift_server_host = '13.233.224.1'
+  $key_manager_server_url = 'https://APIM-341331015.ap-south-1.elb.amazonaws.com${carbon.context}services/'
+  $key_validator_thrift_server_host = 'APIM-341331015.ap-south-1.elb.amazonaws.com'
 
-  $api_devportal_url = 'https://13.233.224.1:${mgt.transport.https.port}/devportal'
-  $throttle_service_url = 'https://13.233.224.1:${mgt.transport.https.port}${carbon.context}services/'
+  $api_devportal_url = 'https://APIM-341331015.ap-south-1.elb.amazonaws.com/devportal'
+  $throttle_service_url = 'https://APIM-341331015.ap-south-1.elb.amazonaws.com${carbon.context}services/'
 
   $traffic_manager_receiver_url = 'tcp://${carbon.local.ip}:${receiver.url.port}'
   $traffic_manager_auth_url = 'ssl://${carbon.local.ip}:${auth.url.port}'
 
   # ----- Master-datasources config params -----
 
-  $wso2am_db_url = 'jdbc:postgresql://wso2-apim.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:5432/apim_db'
-  $wso2am_db_username = 'wso2apim'
-  $wso2am_db_password = 'suhtoN-9zirmy-qibfor'
+  $wso2am_db_url = 'jdbc:postgresql://apim-ha.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:5432/apim_db'
+  $wso2am_db_username = 'apimadmin'
+  $wso2am_db_password = 'kj#$r435%7df'
   $wso2am_db_type = 'postgre'
   $wso2am_db_validation_query = 'SELECT 1'
 
-  $wso2shared_db_url = 'jdbc:postgresql://wso2-apim.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:5432/shared_db'
-  $wso2shared_db_username = 'wso2apim'
-  $wso2shared_db_password = 'suhtoN-9zirmy-qibfor'
+  $wso2shared_db_url = 'jdbc:postgresql://apim-ha.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:5432/shared_db'
+  $wso2shared_db_username = 'apimadmin'
+  $wso2shared_db_password = 'kj#$r435%7df'
   $wso2shared_db_type = 'postgre'
   $wso2shared_db_validation_query = 'SELECT 1'
 
@@ -192,7 +189,7 @@ class apim_common::params {
   $admin_username = 'admin'
   $admin_password = 'admin'
 
-  $event_listener_notification_endpoint = 'https://13.233.224.1:${mgt.transport.https.port}/internal/data/v1/notify'
+  $event_listener_notification_endpoint = 'https://APIM-341331015.ap-south-1.elb.amazonaws.com/internal/data/v1/notify'
 
   $token_exchange_enable = true
   $token_exchange_allow_refresh_tokens = true

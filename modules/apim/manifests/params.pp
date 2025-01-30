@@ -41,7 +41,7 @@ class apim::params inherits apim_common::params {
      This is will become part of the End Point Reference of the
      services deployed on this server instance.
   */
-  $hostname = '13.233.224.1'
+  $hostname = 'APIM-341331015.ap-south-1.elb.amazonaws.com'
 
   # ----- api-manager.xml config params -----
   $oauth_configs_revoke_api_url = 'https://localhost:${https.nio.port}/revoke'
