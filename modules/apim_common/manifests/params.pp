@@ -127,7 +127,7 @@ class apim_common::params {
         traffic_manager_auth_urls => '"ssl://apim-node-2.example.com:9712"'
       }
     ]
-  } else $facts['ec2_metadata']['tags']['instance']['Node'] == 'Two' {
+  } elsif $facts['ec2_metadata']['tags']['instance']['Node'] == 'Two' {
     $event_duplicate_url = '"tcp://apim-node-1.example.com:5672"'
     $throttle_decision_endpoints = '"tcp://apim-node-2.example.com:5673"'
     $throttling_url_group = [
