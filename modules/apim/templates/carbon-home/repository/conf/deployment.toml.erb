@@ -194,12 +194,12 @@ event_duplicate_url = ["<%= @event_duplicate_url%>"]
 #port = 10005
 
 		
-<% @throttling_url_group.each do |url_group| %>	
-[[apim.throttling.url_group]]
-traffic_manager_urls = ["<%= url_group['traffic_manager_urls'] %>"]
-traffic_manager_auth_urls = ["<%= url_group['traffic_manager_auth_urls'] %>"]
-type = "loadbalance"
-<% end %>
+# <% @throttling_url_group.each do |url_group| %>	
+# [[apim.throttling.url_group]]
+# traffic_manager_urls = ["<%= url_group['traffic_manager_urls'] %>"]
+# traffic_manager_auth_urls = ["<%= url_group['traffic_manager_auth_urls'] %>"]
+# type = "loadbalance"
+# <% end %>
 
 #[apim.workflow]
 #enable = false
