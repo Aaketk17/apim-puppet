@@ -144,11 +144,11 @@ class apim_common::params {
 
   $gateway_labels = ["Default"]
 
-  $key_manager_server_url = 'https://APIM-341331015.ap-south-1.elb.amazonaws.com${carbon.context}services/'
+  $key_manager_server_url = 'https://APIM-341331015.ap-south-1.elb.amazonaws.com/services/'
   $key_validator_thrift_server_host = 'APIM-341331015.ap-south-1.elb.amazonaws.com'
 
   $api_devportal_url = 'https://APIM-341331015.ap-south-1.elb.amazonaws.com/devportal'
-  $throttle_service_url = 'https://APIM-341331015.ap-south-1.elb.amazonaws.com${carbon.context}services/'
+  $throttle_service_url = 'https://APIM-341331015.ap-south-1.elb.amazonaws.com/services/'
 
   $traffic_manager_receiver_url = 'tcp://${carbon.local.ip}:${receiver.url.port}'
   $traffic_manager_auth_url = 'ssl://${carbon.local.ip}:${auth.url.port}'

@@ -19,8 +19,6 @@ url = "<%= @wso2am_db_url %>"
 username = "<%= @wso2am_db_username %>"
 password = "<%= @wso2am_db_password %>"
 driver = "org.postgresql.Driver"
-
-[database.apim_db.pool_options]
 validationQuery = "<%= @wso2am_db_validation_query %>"
 
 [database.shared_db]
@@ -29,8 +27,6 @@ url = "<%= @wso2shared_db_url %>"
 username = "<%= @wso2shared_db_username %>"
 password = "<%= @wso2shared_db_password %>"
 driver = "org.postgresql.Driver"
-
-[database.shared_db.pool_options]
 validationQuery = "<%= @wso2shared_db_validation_query %>"
 
 [keystore.tls]
