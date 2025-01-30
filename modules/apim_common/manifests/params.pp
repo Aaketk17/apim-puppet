@@ -155,13 +155,13 @@ class apim_common::params {
 
   # ----- Master-datasources config params -----
 
-  $wso2am_db_url = 'jdbc:postgresql://apim-ha.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:5432/apim_db'
+  $wso2am_db_url = 'jdbc:postgresql://test-apim.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:5432/apim_db'
   $wso2am_db_username = 'apimadmin'
   $wso2am_db_password = 'kj#$r435%7df'
   $wso2am_db_type = 'postgre'
   $wso2am_db_validation_query = 'SELECT 1'
 
-  $wso2shared_db_url = 'jdbc:postgresql://apim-ha.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:5432/shared_db'
+  $wso2shared_db_url = 'jdbc:postgresql://test-apim.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:5432/shared_db'
   $wso2shared_db_username = 'apimadmin'
   $wso2shared_db_password = 'kj#$r435%7df'
   $wso2shared_db_type = 'postgre'
