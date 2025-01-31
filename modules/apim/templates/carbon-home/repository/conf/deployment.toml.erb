@@ -20,6 +20,8 @@ username = "<%= @wso2am_db_username %>"
 password = "<%= @wso2am_db_password %>"
 driver = "org.postgresql.Driver"
 validationQuery = "<%= @wso2am_db_validation_query %>"
+pool_options.maxActive = 50
+pool_options.maxWait = 30000
 
 [database.shared_db]
 type = "<%= @wso2shared_db_type %>"
@@ -28,6 +30,9 @@ username = "<%= @wso2shared_db_username %>"
 password = "<%= @wso2shared_db_password %>"
 driver = "org.postgresql.Driver"
 validationQuery = "<%= @wso2shared_db_validation_query %>"
+pool_options.maxActive = 100
+pool_options.maxWait = 10000
+pool_options.validationInterval = 10000
 
 [keystore.tls]
 file_name =  "<%= @key_store_location %>"
