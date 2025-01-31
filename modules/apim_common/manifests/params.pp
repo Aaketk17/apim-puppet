@@ -189,5 +189,4 @@ class apim_common::params {
   $token_exchange_iat_validity_period = '1h'
 
 }
-tail -f /mnt/apim/wso2am-4.4.0/repository/logs/wso2carbon.log
-less /mnt/apim/wso2am-4.4.0/repository/logs/wso2carbon.log
+
