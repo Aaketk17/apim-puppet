@@ -104,7 +104,7 @@ class apim_common inherits apim_common::params {
   }
 
   # Copy binary to distribution path
-  if $app_pack_location == "local" {
+  if $pack_location == "local" {
     file { "wso2-binary":
       path    => "${pack_dir}/${product_binary}",
       owner   => $user,
@@ -115,7 +115,7 @@ class apim_common inherits apim_common::params {
       notify  => [Exec["stop-server"], Exec["unzip-update"]],
     }
   }
-  elsif $app_pack_location == "remote" {
+  elsif $pack_location == "remote" {
     file { "delete-existing-pack":
       path    => "${pack_dir}/${product_binary}",
       ensure  => absent,
