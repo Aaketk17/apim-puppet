@@ -115,11 +115,11 @@ class apim_common::params {
   ]
 
   if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
-    $event_duplicate_url = 'tcp://apim-node-2.example.com:5673'
+    $event_duplicate_url = 'tcp://apim-node-2.example.com:5672'
     $throttle_decision_endpoints = 'tcp://apim-node-1.example.com.com:5672'
   } elsif $facts['ec2_metadata']['tags']['instance']['Node'] == 'Two' {
     $event_duplicate_url = 'tcp://apim-node-1.example.com.com:5672'
-    $throttle_decision_endpoints = 'tcp://apim-node-2.example.com:5673'
+    $throttle_decision_endpoints = 'tcp://apim-node-2.example.com:5672'
   }
 
   $throttling_url_group = [
@@ -189,3 +189,6 @@ class apim_common::params {
   $token_exchange_iat_validity_period = '1h'
 
 }
+
+tail -f /mnt/apim/wso2am-4.4.0/repository/logs/wso2carbon.log
+less /mnt/apim/wso2am-4.4.0/repository/logs/wso2carbon.log
