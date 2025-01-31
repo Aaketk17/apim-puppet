@@ -1,0 +1,22 @@
+{
+	"username": "",
+	"update-level": "31",
+	"channel": "full",
+	"environment": "live",
+	"backup-dir": "",
+	"product": {
+		"pattern": "wso2am-4.2.0",
+		"name": "wso2am",
+		"version": "4.2.0",
+		"backup": "",
+		"backup-size": 0
+	},
+	"service": {
+		"url": "",
+		"token-url": "",
+		"app-key": "",
+		"access-token": "",
+		"refresh-token": ""
+	},
+	"hotfixes": null
+}

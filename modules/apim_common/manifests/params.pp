@@ -17,11 +17,11 @@
 class apim_common::params {
 
   $packages = ["unzip"]
-  $version = "4.4.0"
+  $version = "4.2.0"
 
   # Set the location the product packages should reside in (eg: "local" in the /files directory, "remote" in a remote location)
   $pack_location = "remote"
-  # $pack_location = "local"
+  $app_pack_location = "local"
   $remote_jdk = "https://corretto.aws/downloads/latest/amazon-corretto-17-x64-linux-jdk.tar.gz"
 
   $user = 'wso2carbon'
@@ -73,7 +73,7 @@ class apim_common::params {
     }
     default: {
       $pack = "wso2am-${version}"
-      $remote_pack = "https://github.com/wso2/product-apim/releases/download/v4.4.0/wso2am-4.4.0.zip"
+      $remote_pack = "https://github.com/wso2/product-apim/archive/refs/tags/v4.2.0.zip"
       $server_script_path = "${product_dir}/${pack}/bin/api-manager.sh"
       $pid_file_path = "${product_dir}/${pack}/wso2carbon.pid"
       $optimize_params = ""
@@ -190,3 +190,5 @@ class apim_common::params {
 
 }
 
+tail -f /mnt/apim/wso2am-4.4.0/repository/logs/wso2carbon.log
+less /mnt/apim/wso2am-4.4.0/repository/logs/wso2carbon.log
