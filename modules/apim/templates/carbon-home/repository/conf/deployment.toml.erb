@@ -5,8 +5,8 @@ base_path = "${carbon.protocol}://${carbon.host}:${carbon.management.port}"
 server_role = "default"
 offset = "<%= @ports_offset %>"
 
-# [transport.https.properties]
-# proxyPort = 443
+[transport.https.properties]
+proxyPort = 443
 
 [super_admin]
 username = "<%= @admin_username %>"
