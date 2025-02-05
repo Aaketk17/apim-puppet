@@ -180,7 +180,7 @@ class apim_common::params {
 
   # ----- user-mgt.xml config params -----
   $admin_username = 'admin'
-  $admin_password = 'wso2admin'
+  $admin_password = 'admin'
 
   $event_listener_notification_endpoint = 'https://APIM-341331015.ap-south-1.elb.amazonaws.com/internal/data/v1/notify'
 
