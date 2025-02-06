@@ -149,7 +149,7 @@ class apim_common inherits apim_common::params {
 
   # Unzip the binary and create setup
   exec { "unzip-update":
-    command => "unzip -o ${product_binary} -d ${product_dir}",
+    command => "unzip -o ${product_binary} -d ${product_dir} && mv ${product_dir}/product-apim-4.2.0 ${product_dir}/wso2am-4.2.0",
     path    => "/usr/bin/",
     user    => $user,
     group   => $user_group,
