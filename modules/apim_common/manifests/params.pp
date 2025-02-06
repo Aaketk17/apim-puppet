@@ -104,7 +104,7 @@ class apim_common::params {
       gateway_type                          => 'Regular',
       provider                              => 'wso2',
       description                           => 'This is a hybrid gateway that handles both production and sandbox token traffic.',
-      server_url                            => 'https://localhost:${mgt.transport.https.port}${carbon.context}services/',
+      server_url                            => 'https://localhost:${mgt.transport.https.port}/services/',
       ws_endpoint                           => 'ws://localhost:9099',
       wss_endpoint                          => 'wss://localhost:8099',
       http_endpoint                         => 'http://apim-wso2.com',
