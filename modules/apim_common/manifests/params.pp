@@ -118,7 +118,7 @@ class apim_common::params {
     $event_duplicate_url = 'tcp://apim-node-2.example.com:5672'
     $throttle_decision_endpoints = 'tcp://apim-node-1.example.com:5672'
   } elsif $facts['ec2_metadata']['tags']['instance']['Node'] == 'Two' {
-    $event_duplicate_url = 'tcp://apim-node-1.example.com.com:5672'
+    $event_duplicate_url = 'tcp://apim-node-1.example.com:5672'
     $throttle_decision_endpoints = 'tcp://apim-node-2.example.com:5672'
   }
 
