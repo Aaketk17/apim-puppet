@@ -187,6 +187,5 @@ class apim_common::params {
   $token_exchange_enable = true
   $token_exchange_allow_refresh_tokens = true
   $token_exchange_iat_validity_period = '1h'
-
 }
 

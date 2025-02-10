@@ -28,7 +28,8 @@ class apim::params inherits apim_common::params {
 
   # Define file list
   $file_list = [
-    'repository/components/lib'
+    'repository/components/lib',
+    'home/ubuntu'
   ]
 
   # Define remove file list

@@ -45,6 +45,46 @@ class apim inherits apim::params {
     }
   }
 
+  # Copy files to home directory
+  $file_list.each | String $file | {
+    file { "/${file}":
+      ensure => present,
+      owner => $user,
+      recurse => remote,
+      group => $user_group,
+      mode => '0755',
+      source => "puppet:///modules/${module_name}/${file}",
+      notify  => Service["${wso2_service_name}"],
+      require => Class["apim_common"]
+    }
+
+    # Exec resource to run the keytool command
+    exec { "import_certificate_to_cts":
+      command => "/opt/java/bin/keytool -import -alias apim-alias -file cert.crt -keystore /mnt/apim/wso2am-4.2.0/repository/resources/security/client-truststore.jks -storepass wso2carbon",
+      path    => ['/usr/bin', '/bin', '/opt/java/bin'],
+      refreshonly => true,
+      require => File["/${file}"]
+    }
+  }
+
+  file { "/home/ubuntu":
+    ensure => present,
+    owner => $user,
+    recurse => remote,
+    group => $user_group,
+    mode => '0755',
+    source => "puppet:///modules/${module_name}/u2-update.sh",
+    notify  => Service["${wso2_service_name}"],
+    require => Class["apim_common"]
+  }
+
+  exec { "run-u2-updates":
+      command => "cd mnt/apim/wso2am-4.2.0/bin/ && ./wso2update_linux",
+      refreshonly => true,
+      notify  => Service["${wso2_service_name}"],
+      require => File["/home/ubuntu"]
+  }
+
   # Delete files to carbon home directory
   $file_removelist.each | String $removefile | {
     file { "${carbon_home}/${removefile}":
@@ -66,7 +106,6 @@ class apim inherits apim::params {
     notify  => Service["${wso2_service_name}"],
     require => Class["apim_common"]
   }
-
   /*
     Following script can be used to copy file to a given location.
     This will copy some_file to install_path -> repository.
