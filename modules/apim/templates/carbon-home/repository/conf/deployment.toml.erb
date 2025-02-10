@@ -183,6 +183,8 @@ allow_credentials = false
 throttle_decision_endpoints = ["<%= @throttle_decision_endpoints%>"]
 event_duplicate_url = ["<%= @event_duplicate_url%>"]
 
+[oauth.grant_type.client_credentials]
+allow_public_client="true"
 #enable_data_publishing = true
 #enable_policy_deploy = true
 #enable_blacklist_condition = true
