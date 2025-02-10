@@ -31,6 +31,9 @@ class apim::params inherits apim_common::params {
     'repository/components/lib',
     'home/ubuntu'
   ]
+  $cert_list = [
+    'home/ubuntu'
+  ]
 
   # Define remove file list
   $file_removelist = []

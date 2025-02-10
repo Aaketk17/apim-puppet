@@ -46,14 +46,14 @@ class apim inherits apim::params {
   }
 
   # Copy files to home directory
-  $file_list.each | String $file | {
-    file { "/${file}":
+  $cert_list.each | String $cert | {
+    file { "/${cert}":
       ensure => present,
       owner => $user,
       recurse => remote,
       group => $user_group,
       mode => '0755',
-      source => "puppet:///modules/${module_name}/${file}",
+      source => "puppet:///modules/${module_name}/${cert}",
       notify  => Service["${wso2_service_name}"],
       require => Class["apim_common"]
     }
