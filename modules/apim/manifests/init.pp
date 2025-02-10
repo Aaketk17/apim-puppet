@@ -79,10 +79,10 @@ class apim inherits apim::params {
   }
 
   exec { "run-u2-updates":
-      command => "cd mnt/apim/wso2am-4.2.0/bin/ && ./wso2update_linux",
-      refreshonly => true,
-      notify  => Service["${wso2_service_name}"],
-      require => File["/home/ubuntu"]
+    command => "cd mnt/apim/wso2am-4.2.0/bin/ && ./wso2update_linux",
+    refreshonly => true,
+    notify  => Service["${wso2_service_name}"],
+    require => File["/home/ubuntu"]
   }
 
   # Delete files to carbon home directory
