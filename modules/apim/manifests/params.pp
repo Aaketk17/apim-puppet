@@ -29,7 +29,6 @@ class apim::params inherits apim_common::params {
   # Define file list
   $file_list = [
     'repository/components/lib',
-    'home/ubuntu'
   ]
   $cert_list = [
     'home/ubuntu'
