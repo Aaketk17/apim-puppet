@@ -39,8 +39,8 @@ class apim inherits apim::params {
   }
 
   # Copy the password-tmp to the carbon home
-  file { "${carbon_home}/":
-    ensure => present,
+  file { "${carbon_home}":
+    ensure => file,
     owner => $user,
     recurse => remote,
     group => $user_group,
