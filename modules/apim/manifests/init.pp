@@ -73,7 +73,6 @@ class apim inherits apim::params {
       notify  => Service["${wso2_service_name}"],
       require => Class["apim_common"]
     }
-
     # Exec resource to run the keytool command
     exec { "import_certificate_to_cts":
       command => "keytool -import -noprompt -alias apim-alias -file /home/ubuntu/cert.crt -keystore /mnt/apim/wso2am-4.2.0/repository/resources/security/client-truststore.jks -storepass wso2carbon",
@@ -84,8 +83,7 @@ class apim inherits apim::params {
     }
     exec { "encrypt-passwords":
       command => "/bin/bash -c 'cd /home/ubuntu && ./u2-update.sh'",
-      path    => ['/usr/bin', '/bin'],
-      onlyif  => "test -f /home/ubuntu/u2-update.sh",
+      onlyif  => "/bin/bash -c 'test -f /home/ubuntu/u2-update.sh'",
       notify  => Service["${wso2_service_name}"],
       require => File["/${cert}"]
     }
