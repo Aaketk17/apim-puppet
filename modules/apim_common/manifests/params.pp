@@ -90,7 +90,7 @@ class apim_common::params {
 
   # ----- api-manager.xml config params -----
   $analytics_enabled = 'false'
-  $analytics_config_endpoint = 'https://apim-wso2.com/auth/v1'
+  $analytics_config_endpoint = 'https://control.apim-wso2.com/auth/v1'
   $analytics_auth_token = ''
 
   $ai_enabled = 'false'
@@ -104,11 +104,11 @@ class apim_common::params {
       gateway_type                          => 'Regular',
       provider                              => 'wso2',
       description                           => 'This is a hybrid gateway that handles both production and sandbox token traffic.',
-      server_url                            => 'https://apim-wso2.com/services/',
+      server_url                            => 'https://gateway.apim-wso2.com/services/',
       ws_endpoint                           => 'ws://localhost:9099',
       wss_endpoint                          => 'wss://localhost:8099',
-      http_endpoint                         => 'http://apim-wso2.com',
-      https_endpoint                        => 'https://apim-wso2.com',
+      http_endpoint                         => 'http://gateway.apim-wso2.com',
+      https_endpoint                        => 'https://gateway.apim-wso2.com',
       websub_event_receiver_http_endpoint   => 'http://localhost:9021',
       websub_event_receiver_https_endpoint  => 'https://localhost:8021'
     }
@@ -135,11 +135,11 @@ class apim_common::params {
 
   $gateway_labels = ["Default"]
 
-  $key_manager_server_url = 'https://apim-wso2.com/services/'
-  $key_validator_thrift_server_host = 'apim-wso2.com'
+  $key_manager_server_url = 'https://control.apim-wso2.com/services/'
+  $key_validator_thrift_server_host = 'control.apim-wso2.com'
 
-  $api_devportal_url = 'https://apim-wso2.com/devportal'
-  $throttle_service_url = 'https://apim-wso2.com/services/'
+  $api_devportal_url = 'https://control.apim-wso2.com/devportal'
+  $throttle_service_url = 'https://control.apim-wso2.com/services/'
 
   $traffic_manager_receiver_url = 'tcp://${carbon.local.ip}:${receiver.url.port}'
   $traffic_manager_auth_url = 'ssl://${carbon.local.ip}:${auth.url.port}'
@@ -182,7 +182,7 @@ class apim_common::params {
   $admin_username = 'admin'
   $admin_password = 'admin'
 
-  $event_listener_notification_endpoint = 'https://apim-wso2.com/internal/data/v1/notify'
+  $event_listener_notification_endpoint = 'https://control.apim-wso2.com/internal/data/v1/notify'
 
   $token_exchange_enable = true
   $token_exchange_allow_refresh_tokens = true
