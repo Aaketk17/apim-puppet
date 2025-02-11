@@ -149,9 +149,10 @@ class apim_common inherits apim_common::params {
 
   # Delete cert file
   exec { "detele-cert":
-    command     => "rm -rf /home/ubuntu/cert.key",
+    command     => "rm -rf /home/ubuntu/cert.crt",
     path        => "/bin/",
     subscribe   => Exec["stop-server"],
+    onlyif      => "test -f /home/ubuntu/cert.crt",
     refreshonly => true,
   }
 
@@ -160,6 +161,7 @@ class apim_common inherits apim_common::params {
     command     => "rm -rf /home/ubuntu/u2-update.sh",
     path        => "/bin/",
     subscribe   => Exec["stop-server"],
+    onlyif      => "test -f /home/ubuntu/u2-update.sh",
     refreshonly => true,
   }
 
