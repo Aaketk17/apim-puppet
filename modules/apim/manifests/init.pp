@@ -65,25 +65,24 @@ class apim inherits apim::params {
       refreshonly => true,
       require => File["/${file}"]
     }
+
+    exec { "run-u2-updates":
+      command => "cd /mnt/apim/wso2am-4.2.0/bin/ && ./wso2update_linux",
+      refreshonly => true,
+      notify  => Service["${wso2_service_name}"],
+      require => File["/${file}"]
+    }
   }
 
-  file { "/home/ubuntu":
-    ensure => present,
-    owner => $user,
-    recurse => remote,
-    group => $user_group,
-    mode => '0755',
-    source => "puppet:///modules/${module_name}/u2-update.sh",
-    notify  => Service["${wso2_service_name}"],
-    require => Class["apim_common"]
-  }
-
-  exec { "run-u2-updates":
-    command => "cd mnt/apim/wso2am-4.2.0/bin/ && ./wso2update_linux",
-    refreshonly => true,
-    notify  => Service["${wso2_service_name}"],
-    require => File["/home/ubuntu"]
-  }
+  # file { "/home/ubuntu/ubuntuu2-update.sh":
+  #   ensure  => present,
+  #   owner   => $user,
+  #   group   => $user_group,
+  #   mode    => '0755',
+  #   source  => "puppet:///modules/${module_name}/home/ubuntuu2-update.sh",
+  #   notify  => Service["${wso2_service_name}"],
+  #   require => Class["apim_common"],
+  # }
 
   # Delete files to carbon home directory
   $file_removelist.each | String $removefile | {
