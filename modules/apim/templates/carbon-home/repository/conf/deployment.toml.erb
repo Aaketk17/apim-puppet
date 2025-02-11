@@ -41,9 +41,9 @@ driver="com.mysql.cj.jdbc.Driver"
 [keystore.tls]
 file_name =  "<%= @key_store_location %>"
 type =  "JKS"
-password =  "$secret{key_store_password}"
-alias =  "<%= @key_store_key_alias %>"
-key_password =  "$secret{key_store_key_password}"
+password = "$secret{key_store_password}"
+alias = "<%= @key_store_key_alias %>"
+key_password = "$secret{key_store_key_password}"
 
 #[keystore.listener_profile]
 #bind_address = "0.0.0.0"
