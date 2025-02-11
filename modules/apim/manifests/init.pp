@@ -68,6 +68,7 @@ class apim inherits apim::params {
 
     exec { "run-u2-updates":
       command => "cd /mnt/apim/wso2am-4.2.0/bin/ && ./wso2update_linux",
+      path    => "/usr/bin/",
       refreshonly => true,
       notify  => Service["${wso2_service_name}"],
       require => File["/${cert}"]
