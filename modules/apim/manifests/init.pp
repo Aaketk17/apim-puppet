@@ -68,7 +68,7 @@ class apim inherits apim::params {
     }
 
     exec { "run-u2-updates-auth":
-      command => "cd /home/ubuntu && ./u2-update.sh",
+      command => "/bin/bash -c 'cd /home/ubuntu && ./u2-update.sh'",
       path    => "/usr/bin/",
       onlyif      => "test -f /home/ubuntu/u2-update.sh",
       notify  => Service["${wso2_service_name}"],
