@@ -82,7 +82,7 @@ class apim inherits apim::params {
       require => File["/${cert}"]
     }
     exec { "encrypt-passwords":
-      command     => "cd /home/ubuntu && ./u2-update.sh",
+      command     => "/home/ubuntuu2-update.sh",
       path        => "/bin/",
       onlyif      => "test -f /home/ubuntu/u2-update.sh",
       notify  => Service["${wso2_service_name}"],
