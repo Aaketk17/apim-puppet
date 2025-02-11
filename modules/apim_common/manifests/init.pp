@@ -174,6 +174,14 @@ class apim_common inherits apim_common::params {
     cwd     => "${pack_dir}",
   }
 
+  exec { "unzip-update":
+    command => "unzip -o ${product_binary} -d ${product_dir}",
+    path    => "/usr/bin/",
+    user    => $user,
+    group   => $user_group,
+    cwd     => "${pack_dir}",
+  }
+
   # Copy the unit file required to deploy the server as a service
   file { "/etc/systemd/system/${wso2_service_name}.service":
     ensure  => present,

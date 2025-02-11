@@ -9,8 +9,8 @@ offset = "<%= @ports_offset %>"
 proxyPort = 443
 
 [super_admin]
-username = "<%= @admin_username %>"
-password = "<%= @admin_password %>"
+username = "$secret{admin_username}"
+password = "$secret{admin_password}"
 create_admin_account = true
 
 [user_store]
@@ -18,9 +18,9 @@ type = "database_unique_id"
 
 [database.apim_db]
 type = "<%= @wso2am_db_type %>"
-url = "<%= @wso2am_db_url %>"
-username = "<%= @wso2am_db_username %>"
-password = "<%= @wso2am_db_password %>"
+url = "$secret{wso2am_db_url}"
+username = "$secret{wso2am_db_username}"
+password = "$secret{wso2am_db_password}>"
 # validationQuery = "<%= @wso2am_db_validation_query %>"
 pool_options.maxActive = 100
 pool_options.maxWait = 30000
@@ -29,9 +29,9 @@ driver="com.mysql.cj.jdbc.Driver"
 
 [database.shared_db]
 type = "<%= @wso2shared_db_type %>"
-url = "<%= @wso2shared_db_url %>"
-username = "<%= @wso2shared_db_username %>"
-password = "<%= @wso2shared_db_password %>"
+url = "$secret{wso2shared_db_url}"
+username = "$secret{wso2shared_db_username}"
+password = "$secret{wso2shared_db_password}"
 # validationQuery = "<%= @wso2shared_db_validation_query %>"
 pool_options.maxActive = 100
 pool_options.maxWait = 10000
@@ -41,9 +41,9 @@ driver="com.mysql.cj.jdbc.Driver"
 [keystore.tls]
 file_name =  "<%= @key_store_location %>"
 type =  "JKS"
-password =  "<%= @key_store_password %>"
+password =  "$secret{key_store_password}"
 alias =  "<%= @key_store_key_alias %>"
-key_password =  "<%= @key_store_key_password %>"
+key_password =  "$secret{key_store_key_password}"
 
 #[keystore.listener_profile]
 #bind_address = "0.0.0.0"
@@ -284,3 +284,14 @@ enable = "<%= @token_exchange_enable %>"
 allow_refresh_tokens = "<%= @token_exchange_allow_refresh_tokens %>"
 iat_validity_period = "<%= @token_exchange_iat_validity_period %>"
 
+[secrets]
+admin_username = "[<%= @admin_username %>]"
+admin_password = "[<%= @admin_password %>]"
+wso2am_db_url  = "[<%= @wso2am_db_url %>]"
+wso2am_db_username  = "[<%= @wso2am_db_username %>]"
+wso2am_db_password  = "[<%= @wso2am_db_password %>]"
+wso2shared_db_url  = "[<%= @wso2shared_db_url %>]"
+wso2shared_db_username  = "[<%= @wso2shared_db_username %>]"
+wso2shared_db_password  = "[<%= @wso2shared_db_password %>]"
+key_store_password = "[<%= key_store_password %>]"
+key_store_key_password = "[<%= key_store_key_password %>]"
