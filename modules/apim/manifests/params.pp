@@ -34,7 +34,7 @@ class apim::params inherits apim_common::params {
     'home/ubuntu'
   ]
 
-  $password_file = 'password-tmp'
+  $password_file = 'encrypt'
 
   # Define remove file list
   $file_removelist = []

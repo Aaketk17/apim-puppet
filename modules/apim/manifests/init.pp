@@ -39,7 +39,7 @@ class apim inherits apim::params {
   }
 
   # Copy the password-tmp to the carbon home
-  file { "${carbon_home}/":
+  file { "${carbon_home}":
     ensure => file,
     mode => '0644',
     source => "puppet:///modules/${module_name}/${password_file}",
