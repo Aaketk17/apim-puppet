@@ -60,7 +60,7 @@ class apim inherits apim::params {
 
     # Exec resource to run the keytool command
     exec { "import_certificate_to_cts":
-      command => "keytool -import -alias apim-alias -file cert.crt -keystore /mnt/apim/wso2am-4.2.0/repository/resources/security/client-truststore.jks -storepass wso2carbon",
+      command => "keytool -import -noprompt -alias apim-alias -file cert.crt -keystore /mnt/apim/wso2am-4.2.0/repository/resources/security/client-truststore.jks -storepass wso2carbon",
       path    => ['/usr/bin', '/bin', '/opt/java/bin'],
       onlyif      => "test -f /home/ubuntu/cert.crt",
       notify  => Service["${wso2_service_name}"],
