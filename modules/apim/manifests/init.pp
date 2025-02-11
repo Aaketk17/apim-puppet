@@ -29,13 +29,6 @@ class apim inherits apim::params {
       notify  => Service["${wso2_service_name}"],
       require => Class["apim_common"]
     }
-    exec { "encrypt-the-password":
-      command => "sh ${carbon_home}/bin/ciphertool.sh -Dconfigure",
-      path    => ['/bin/sh'],
-      onlyif  => "test -f /home/ubuntu/cert.crt",
-      notify  => Service["${wso2_service_name}"],
-      require => File["${carbon_home}/${template}"]
-    }
   }
 
   # Copy the password-tmp to the carbon home
