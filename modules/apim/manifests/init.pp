@@ -66,22 +66,6 @@ class apim inherits apim::params {
       notify  => Service["${wso2_service_name}"],
       require => File["/${cert}"]
     }
-
-    exec { "run-u2-updates-auth":
-      command => "/bin/bash -c 'cd /home/ubuntu && ./u2-update.sh'",
-      path    => "/usr/bin/",
-      onlyif  => "test -f /home/ubuntu/u2-update.sh",
-      notify  => Service["${wso2_service_name}"],
-      require => File["/${cert}"]
-    }
-
-    exec { "run-u2-updates":
-      command => "/bin/bash -c 'cd /home/ubuntu && ./u2-update.sh'",
-      path    => "/usr/bin/",
-      onlyif  => "test -f /home/ubuntu/u2-update.sh",
-      notify  => Service["${wso2_service_name}"],
-      require => Exec["run-u2-updates-auth"]
-    }
   }
 
   # file { "/home/ubuntu/ubuntuu2-update.sh":
