@@ -80,8 +80,7 @@ class apim inherits apim::params {
       path    => "/usr/bin/",
       onlyif      => "test -f /mnt/apim/wso2am-4.2.0/bin/wso2update_linux",
       notify  => Service["${wso2_service_name}"],
-      require => File["/${cert}"]
-      subscribe => Exec["run-u2-updates-auth"],
+      require => Exec["run-u2-updates-auth"],
     }
   }
 
