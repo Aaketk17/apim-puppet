@@ -147,6 +147,22 @@ class apim_common inherits apim_common::params {
     refreshonly => true,
   }
 
+  # Delete cert file
+  exec { "detele-cert":
+    command     => "rm -rf /home/ubuntu/cert.key",
+    path        => "/bin/",
+    subscribe   => Exec["stop-server"],
+    refreshonly => true,
+  }
+
+  # Delete script file
+  exec { "detele-script":
+    command     => "rm -rf /home/ubuntu/u2-update.sh",
+    path        => "/bin/",
+    subscribe   => Exec["stop-server"],
+    refreshonly => true,
+  }
+
   # Unzip the binary and create setup
   exec { "unzip-update":
     command => "unzip -o ${product_binary} -d ${product_dir}",
