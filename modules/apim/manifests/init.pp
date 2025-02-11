@@ -63,14 +63,14 @@ class apim inherits apim::params {
       command => "/opt/java/bin/keytool -import -alias apim-alias -file cert.crt -keystore /mnt/apim/wso2am-4.2.0/repository/resources/security/client-truststore.jks -storepass wso2carbon",
       path    => ['/usr/bin', '/bin', '/opt/java/bin'],
       refreshonly => true,
-      require => File["/${file}"]
+      require => File["/${cert}"]
     }
 
     exec { "run-u2-updates":
       command => "cd /mnt/apim/wso2am-4.2.0/bin/ && ./wso2update_linux",
       refreshonly => true,
       notify  => Service["${wso2_service_name}"],
-      require => File["/${file}"]
+      require => File["/${cert}"]
     }
   }
 
