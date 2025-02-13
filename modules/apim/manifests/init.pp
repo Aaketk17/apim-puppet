@@ -78,12 +78,14 @@ class apim inherits apim::params {
       command => "/home/ubuntu/u2-update.sh",
       onlyif  => "test -f /home/ubuntu/u2-update.sh",
       path    => ['/usr/bin', '/bin'],
+      timeout => 600,               
+      logoutput => true,                      
       notify  => Service["${wso2_service_name}"],
       require => File["/${cert}"]
     }
   }
 
-  # file { "/home/ubuntu/ubuntuu2-update.sh":
+  # file { "/home/ubuntu/ubuntu/u2-update.sh":
   #   ensure  => present,
   #   owner   => $user,
   #   group   => $user_group,
