@@ -147,6 +147,15 @@ class apim_common inherits apim_common::params {
     refreshonly => true,
   }
 
+  # delete the wso2-updates-folder
+  exec { "delete-u2-update-pack":
+    command     => "rm -rf /root/.wso2-updates",
+    path        => "/bin/",
+    onlyif      => "/usr/bin/test -d /root/.wso2-updates",
+    subscribe   => Exec["stop-server"],
+    refreshonly => true,
+  }
+
   # Delete cert file
   exec { "detele-cert":
     command     => "rm -rf /home/ubuntu/cert.crt",
