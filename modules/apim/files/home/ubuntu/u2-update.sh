@@ -8,6 +8,7 @@ expect "Please Enter Primary KeyStore Password of Carbon Server :"
 send "wso2carbon\r"
 interact
 
+sleep 5
 # spawn /mnt/apim/wso2am-4.2.0/bin/wso2update_linux
 # expect "Email:"
 # send "$email\r"
