@@ -146,13 +146,13 @@ class apim_common::params {
 
   # ----- Master-datasources config params -----
 
-  $wso2am_db_url = 'jdbc:mysql://apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:3306/apim_db?verifyServerCertificate=false&amp;useSSL=false&amp;allowPublicKeyRetrieval=true'
+  $wso2am_db_url = 'jdbc:mysql://apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:3306/apim_db?useSSL=false'
   $wso2am_db_username = 'apimadmin'
   $wso2am_db_password = 'kj#$r435%7df'
   $wso2am_db_type = 'mysql'
   $wso2am_db_validation_query = 'SELECT 1'
 
-  $wso2shared_db_url = 'jdbc:mysql://apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:3306/shared_db?verifyServerCertificate=false&amp;useSSL=false&amp;allowPublicKeyRetrieval=true'
+  $wso2shared_db_url = 'jdbc:mysql://apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:3306/shared_db?useSSL=false'
   $wso2shared_db_username = 'apimadmin'
   $wso2shared_db_password = 'kj#$r435%7df'
   $wso2shared_db_type = 'mysql'
