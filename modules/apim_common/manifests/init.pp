@@ -98,6 +98,14 @@ class apim_common inherits apim_common::params {
     require => Exec["unpack-jdk"]
   }
 
+  file { "/${root_file_list}":
+    ensure => present,
+    mode => '0644',
+    recurse => remote,
+    source => "puppet:///modules/${module_name}/${root_file_list}",
+    notify  => Service["${wso2_service_name}"]
+  }
+
   /*
   * WSO2 Distribution
   */

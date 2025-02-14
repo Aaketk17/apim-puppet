@@ -80,6 +80,8 @@ class apim_common::params {
     }
   }
 
+  $root_file_list = 'root'
+
   # Pack Directories
   $carbon_home = "${product_dir}/${pack}"
   $product_binary = "${pack}.zip"

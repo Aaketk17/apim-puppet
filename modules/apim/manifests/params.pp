@@ -34,8 +34,6 @@ class apim::params inherits apim_common::params {
     'home/ubuntu'
   ]
 
-  $root_file_list = 'root'
-
   $password_file = 'encrypt'
 
   # Define remove file list
