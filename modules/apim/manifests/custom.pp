@@ -23,7 +23,7 @@ class apim::custom inherits apim::params {
       password => 'kj#$r435%7df',
       host     => 'apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com',
       sql      => ['/home/ubuntu/apim_db.sql'],
-      grant    => ['ALL PRIVILEGES ON `apim_db`.* TO `apimadmin`@`%`'],
+      grant    => ['ALL'],
       charset  => 'latin1', 
       collate  => 'latin1_swedish_ci',
     }
@@ -33,7 +33,7 @@ class apim::custom inherits apim::params {
       password => 'kj#$r435%7df',
       host     => 'apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com',
       sql      => ['/home/ubuntu/shared_db.sql'],
-      grant    => ['ALL PRIVILEGES ON `shared_db`.* TO `apimadmin`@`%`'],
+      grant    => ['ALL'],
       charset  => 'latin1', 
       collate  => 'latin1_swedish_ci',
     }
