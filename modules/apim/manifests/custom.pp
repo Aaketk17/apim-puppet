@@ -20,7 +20,7 @@ class apim::custom inherits apim::params {
   if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
     mysql_user { "apdimdbuser@%":
       ensure => present,
-      password_hash => mysql_password("kj#$r435%7df"),
+      password_hash => mysql::password("kj#$r435%7df"),
     }
     # mysql_grant { "apdimdbuser@%/apim_db.*":
     #   privileges => "all",
