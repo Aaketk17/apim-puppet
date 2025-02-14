@@ -18,24 +18,33 @@
 # This class is reserved to run custom user code before starting the server.
 class apim::custom inherits apim::params {
   if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
+    mysql_user { "apdimdbuser@apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com":
+      ensure => present,
+      password_hash => mysql_password("kj#$r435%7df"),
+      require => Package[mysql],
+    }
+    mysql_grant { "apdimdbuser@apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com/apim_db":
+      privileges => "all",
+      require => Mysql_user["apdimdbuser@pim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com"],
+    }
     mysql::db { 'apim_db':
-      user     => 'apdimdbuser',
+      user     => 'apdimadmin',
       password => 'kj#$r435%7df',
       host     => 'apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com',
       sql      => ['/home/ubuntu/apim_db.sql'],
-      grant    => ['ALL ON apim_db.* TO `apdimdbuser`@`%`'],
+      grant    => ['ALL'],
       charset  => 'latin1', 
       collate  => 'latin1_swedish_ci',
     }
 
-    mysql::db { 'shared_db':
-      user     => 'shareddbuser',
-      password => 'kj#$r435%7df',
-      host     => 'apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com',
-      sql      => ['/home/ubuntu/shared_db.sql'],
-      grant    => ['ALL ON shared_db.* TO `shareddbuser`@`%`'],
-      charset  => 'latin1', 
-      collate  => 'latin1_swedish_ci',
-    }
+    # mysql::db { 'shared_db':
+    #   user     => 'shareddbuser',
+    #   password => 'kj#$r435%7df',
+    #   host     => 'apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com',
+    #   sql      => ['/home/ubuntu/shared_db.sql'],
+    #   grant    => ['ALL'],
+    #   charset  => 'latin1', 
+    #   collate  => 'latin1_swedish_ci',
+    # }
   }
 }
