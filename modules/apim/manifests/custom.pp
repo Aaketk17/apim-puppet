@@ -18,6 +18,7 @@
 # This class is reserved to run custom user code before starting the server.
 class apim::custom inherits apim::params {
   if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
+    $provider = 'mysql'
 
     # mysql_grant { "apimdbadmin@%/apim_db.*":
     #   privileges => "all",
