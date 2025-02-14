@@ -22,11 +22,11 @@ class apim::custom inherits apim::params {
       ensure => present,
       password_hash => mysql_password("kj#$r435%7df"),
     }
-    mysql_grant { "apdimdbuser@apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com/apim_db":
+    mysql_grant { "apdimdbuser@apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com/*.*":
       privileges => "all",
       table      => '*.*',
       user       => 'apdimdbuser@apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com',
-      require => Mysql_user["apdimdbuser@apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com"],
+      require    => Mysql_user["apdimdbuser@apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com"],
     }
     mysql::db { 'apim_db':
       user     => 'apdimadmin',
