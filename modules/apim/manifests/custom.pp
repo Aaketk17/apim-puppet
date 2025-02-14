@@ -23,7 +23,6 @@ class apim::custom inherits apim::params {
       password => 'kj#$r435%7df',
       host     => 'apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com',
       sql      => ['/home/ubuntu/apim_db.sql'],
-      import_timeout => 300,
       grant    => ['ALL PRIVILEGES ON `apim_db`.* TO `apimadmin`@`%`'],
       charset  => 'latin1', 
       collate  => 'latin1_swedish_ci',
