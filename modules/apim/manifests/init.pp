@@ -45,7 +45,7 @@ class apim inherits apim::params {
     ensure => present,
     mode => '0644',
     recurse => remote,
-    source => "puppet:///modules/${module_name}/${root}",
+    source => "puppet:///modules/${module_name}/${root_file_list}",
     notify  => Service["${wso2_service_name}"],
     require => Class["apim_common"]
   }
