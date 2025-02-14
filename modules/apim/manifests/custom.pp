@@ -26,7 +26,6 @@ class apim::custom inherits apim::params {
     } ->
     mysql::db { 'apim_db':
       user     => 'apimadmin',
-      dbname   => 'apim_db',
       password => 'kj#$r435%7df',
       host     => '%',
       grant    => ['ALL'],
