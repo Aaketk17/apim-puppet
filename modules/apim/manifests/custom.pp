@@ -17,7 +17,7 @@
 # Class: apim::custom
 # This class is reserved to run custom user code before starting the server.
 class apim::custom inherits apim::params {
-  if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
+  if $facts['mysqld_version'] == '8.0' {
     mysql::db { 'apim_db':
       user     => 'apimadmin',
       password => 'kj#$r435%7df',
