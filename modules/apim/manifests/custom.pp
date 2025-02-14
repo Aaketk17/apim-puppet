@@ -26,7 +26,7 @@ class apim::custom inherits apim::params {
       privileges => "all",
       table      => '*.*',
       user       => 'apdimdbuser@apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com',
-      require    => Mysql_user["apdimdbuser@apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com"],
+      require    => Mysql_user["apdimdbuser@%"],
     } ->
     mysql::db { 'apim_db':
       user     => 'apdimadmin',
