@@ -19,8 +19,8 @@
 class apim::custom inherits apim::params {
   if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
     mysql::db { 'apim_db':
-      user     => $admin_username,
-      password => $admin_password,
+      user     => 'apimadmin',
+      password => 'kj#$r435%7df',
       host     => 'apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com',
       sql      => ['/home/ubuntu/apim_db.sql'],
       grant    => ['ALL'],
@@ -29,8 +29,8 @@ class apim::custom inherits apim::params {
     }
 
     mysql::db { 'shared_db':
-      user     => $admin_username,
-      password => $admin_password,
+      user     => 'apimadmin',
+      password => 'kj#$r435%7df',
       host     => 'apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com',
       sql      => ['/home/ubuntu/shared_db.sql'],
       grant    => ['ALL'],
