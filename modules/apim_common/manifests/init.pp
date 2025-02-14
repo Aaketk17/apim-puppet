@@ -158,6 +158,17 @@ class apim_common inherits apim_common::params {
     }
   }
 
+  # delete the wso2-updates-folder in home
+  if $enable_u2_updaes {
+    exec { "delete-u2-update-pack":
+      command     => "rm -rf backup /home/ubuntu/backup /home/ubuntu/docker /home/ubuntu/dry-run /home/ubuntu/hotfixes /home/ubuntu/updates",
+      path        => "/bin/",
+      onlyif      => "/usr/bin/test -d /home/ubuntu/docker -a -d /home/ubuntu/dry-run -a -d /home/ubuntu/hotfixes -a -d /home/ubuntu/updates",
+      subscribe   => Exec["stop-server"],
+      refreshonly => true,
+    }
+  }
+
   # Delete cert file
   exec { "detele-cert":
     command     => "rm -rf /home/ubuntu/cert.crt",

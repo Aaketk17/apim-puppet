@@ -56,7 +56,7 @@ class apim inherits apim::params {
   }
 
   # Copy files to home directory
-  $cert_list.each | String $cert | {
+  $home_file_list.each | String $cert | {
     file { "/${cert}":
       ensure => present,
       owner => $user,
@@ -103,16 +103,6 @@ class apim inherits apim::params {
       }
     }
   }
-
-  # file { "/home/ubuntu/ubuntu/u2-update.sh":
-  #   ensure  => present,
-  #   owner   => $user,
-  #   group   => $user_group,
-  #   mode    => '0755',
-  #   source  => "puppet:///modules/${module_name}/home/ubuntuu2-update.sh",
-  #   notify  => Service["${wso2_service_name}"],
-  #   require => Class["apim_common"],
-  # }
 
   # Delete files to carbon home directory
   $file_removelist.each | String $removefile | {

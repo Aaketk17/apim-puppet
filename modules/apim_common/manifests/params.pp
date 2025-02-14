@@ -145,7 +145,7 @@ class apim_common::params {
   $traffic_manager_auth_url = 'ssl://${carbon.local.ip}:${auth.url.port}'
 
   # ----- Master-datasources config params -----
-
+  $wso2_rds_host = 'apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com'
   $wso2am_db_url = 'jdbc:mysql://apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:3306/apim_db?useSSL=false'
   $wso2am_db_username = 'apimadmin'
   $wso2am_db_password = 'kj#$r435%7df'
@@ -188,6 +188,6 @@ class apim_common::params {
   $token_exchange_allow_refresh_tokens = true
   $token_exchange_iat_validity_period = '1h'
 
-  $enable_u2_updaes = true
+  $enable_u2_updaes = false
 }
 

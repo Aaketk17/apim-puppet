@@ -30,7 +30,7 @@ class apim::params inherits apim_common::params {
   $file_list = [
     'repository/components/lib',
   ]
-  $cert_list = [
+  $home_file_list = [
     'home/ubuntu'
   ]
 

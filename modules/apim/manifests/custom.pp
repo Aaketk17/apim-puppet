@@ -16,6 +16,26 @@
 
 # Class: apim::custom
 # This class is reserved to run custom user code before starting the server.
-class apim::custom {
-  # resources
+class apim::custom inherits apim::params {
+  if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
+    mysql::db { 'apim_db':
+      user     => $admin_username,
+      password => $admin_password,
+      host     => $wso2_rds_host,
+      sql      => '/home/ubuntu/apim_db.sql',
+      grant    => ['ALL'],
+      charset  => 'latin1', 
+      collate  => 'latin1_swedish_ci',
+    }
+
+    mysql::db { 'shared_db':
+      user     => $admin_username,
+      password => $admin_password,
+      host     => $wso2_rds_host,
+      sql      => '/home/ubuntu/shared_db.sql',
+      grant    => ['ALL'],
+      charset  => 'latin1', 
+      collate  => 'latin1_swedish_ci',
+    }
+  }
 }
