@@ -23,6 +23,12 @@ class apim_common inherits apim_common::params {
     ensure => installed
   }
 
+  if if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
+    package { 'mysql-client':
+      ensure => installed
+    }
+  }
+
   # Create wso2 group
   group { $user_group:
     ensure => present,
