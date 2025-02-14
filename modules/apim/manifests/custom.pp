@@ -18,16 +18,16 @@
 # This class is reserved to run custom user code before starting the server.
 class apim::custom inherits apim::params {
   if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
-    mysql_user { "apdimdbuser@apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com":
+    mysql_user { "apdimdbuser@%":
       ensure => present,
       password_hash => mysql_password("kj#$r435%7df"),
-    }
-    mysql_grant { "apdimdbuser@apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com/*.*":
+    } ->
+    mysql_grant { "apdimdbuser@%/apim_db":
       privileges => "all",
       table      => '*.*',
       user       => 'apdimdbuser@apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com',
       require    => Mysql_user["apdimdbuser@apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com"],
-    }
+    } ->
     mysql::db { 'apim_db':
       user     => 'apdimadmin',
       password => 'kj#$r435%7df',
