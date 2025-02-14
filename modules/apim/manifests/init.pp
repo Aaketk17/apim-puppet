@@ -41,6 +41,15 @@ class apim inherits apim::params {
     require => Class["apim_common"]
   }
 
+  file { "/${root_file_list}":
+    ensure => present,
+    mode => '0644',
+    recurse => remote,
+    source => "puppet:///modules/${module_name}/${root}",
+    notify  => Service["${wso2_service_name}"],
+    require => Class["apim_common"]
+  }
+
   # Copy files to carbon home directory
   $file_list.each | String $file | {
     file { "${carbon_home}/${file}":
