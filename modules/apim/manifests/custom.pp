@@ -19,23 +19,25 @@
 class apim::custom inherits apim::params {
   if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
     mysql::db { 'apim_db':
-      user     => 'apimadmin',
+      user     => 'apdimdbuser',
       password => 'kj#$r435%7df',
       host     => 'apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com',
       sql      => ['/home/ubuntu/apim_db.sql'],
-      grant    => ['ALL ON apim_db.*'],
+      grant    => ['ALL ON apim_db.* TO `apdimdbuser`@`%`'],
       charset  => 'latin1', 
       collate  => 'latin1_swedish_ci',
+      notify  => Service["${wso2_service_name}"],
     }
 
     mysql::db { 'shared_db':
-      user     => 'apimadmin',
+      user     => 'shareddbuser',
       password => 'kj#$r435%7df',
       host     => 'apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com',
       sql      => ['/home/ubuntu/shared_db.sql'],
-      grant    => ['ALL ON shared_db.*'],
+      grant    => ['ALL ON shared_db.* TO `shareddbuser`@`%`'],
       charset  => 'latin1', 
       collate  => 'latin1_swedish_ci',
+      notify  => Service["${wso2_service_name}"],
     }
   }
 }
