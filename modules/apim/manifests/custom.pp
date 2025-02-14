@@ -19,19 +19,19 @@
 class apim::custom inherits apim::params {
   if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
 
-    # mysql_grant { "apimadmin@%/apim_db.*":
-    #   privileges => "all",
-    #   table      => 'apim_db.*',
-    #   user       => 'apimadmin@%',
-    # }
-    mysql::db { 'apim_db':
-      user     => 'apimadmin',
-      password => 'kj#$r435%7df',
-      host     => '%',
-      grant    => ['ALL'],
-      charset  => 'latin1', 
-      collate  => 'latin1_swedish_ci',
+    mysql_grant { "apimdbadmin@%/apim_db.*":
+      privileges => "all",
+      table      => 'apim_db.*',
+      user       => 'apimdbadmin@%',
     }
+    # mysql::db { 'apim_db':
+    #   user     => 'apimadmin',
+    #   password => 'kj#$r435%7df',
+    #   host     => '%',
+    #   grant    => ['ALL'],
+    #   charset  => 'latin1', 
+    #   collate  => 'latin1_swedish_ci',
+    # }
 
     # mysql::db { 'shared_db':
     #   user     => 'shareddbuser',
