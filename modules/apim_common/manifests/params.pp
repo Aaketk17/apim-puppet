@@ -146,6 +146,7 @@ class apim_common::params {
 
   # ----- Master-datasources config params -----
   $wso2_rds_host = 'apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com'
+  
   $wso2am_db_url = 'jdbc:mysql://apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:3306/apim_db?useSSL=false'
   $wso2am_db_username = 'apimadmin'
   $wso2am_db_password = 'kj#$r435%7df'
