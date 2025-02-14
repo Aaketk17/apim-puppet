@@ -26,7 +26,6 @@ class apim::custom inherits apim::params {
       grant    => ['ALL ON apim_db.* TO `apdimdbuser`@`%`'],
       charset  => 'latin1', 
       collate  => 'latin1_swedish_ci',
-      notify  => Service["${wso2_service_name}"],
     }
 
     mysql::db { 'shared_db':
@@ -37,7 +36,6 @@ class apim::custom inherits apim::params {
       grant    => ['ALL ON shared_db.* TO `shareddbuser`@`%`'],
       charset  => 'latin1', 
       collate  => 'latin1_swedish_ci',
-      notify  => Service["${wso2_service_name}"],
     }
   }
 }
