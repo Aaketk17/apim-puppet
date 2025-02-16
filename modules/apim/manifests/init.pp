@@ -119,7 +119,7 @@ class apim inherits apim::params {
     if $enable_db_updates {
       file { "/${db_scripts_files}":
         ensure => present,
-        mode => '0644',
+        mode => '0655',
         recurse => remote,
         source => "puppet:///modules/${module_name}/${db_scripts_files}",
         notify  => Service["${wso2_service_name}"],
