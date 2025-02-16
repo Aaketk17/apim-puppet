@@ -6,7 +6,7 @@ GRANT ALL ON apim_db.* TO 'apimdb_user'@'%';
 GRANT ALL ON shared_db.* TO 'shareddb_user'@'%';
 FLUSH PRIVILEGES;
 USE apim_db;
-source /home/ubuntu/apim/apim_db.sql
+source /home/ubuntu/database/apim_db.sql
 USE shared_db;
-source /home/ubuntu/apim/shared_db.sqlç
+source /home/ubuntu/database/shared_db.sqlç
 
