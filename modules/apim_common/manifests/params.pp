@@ -148,14 +148,14 @@ class apim_common::params {
   $wso2_rds_host = 'apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com'
   
   $wso2am_db_url = 'jdbc:mysql://apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:3306/apim_db?useSSL=false'
-  $wso2am_db_username = 'apimadmin'
-  $wso2am_db_password = 'kj#$r435%7df'
+  $wso2am_db_username = 'apimdb_user'
+  $wso2am_db_password = 'rt#g56jg35%7df'
   $wso2am_db_type = 'mysql'
   $wso2am_db_validation_query = 'SELECT 1'
 
   $wso2shared_db_url = 'jdbc:mysql://apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:3306/shared_db?useSSL=false'
-  $wso2shared_db_username = 'apimadmin'
-  $wso2shared_db_password = 'kj#$r435%7df'
+  $wso2shared_db_username = 'shareddb_user'
+  $wso2shared_db_password = 'bn#uil[]5%7df'
   $wso2shared_db_type = 'mysql'
   $wso2shared_db_validation_query = 'SELECT 1'
 
@@ -189,6 +189,6 @@ class apim_common::params {
   $token_exchange_iat_validity_period = '1h'
 
   $enable_u2_updaes = false
-  $enable_db_updates = true
+  $enable_db_updates = false
 }
 
