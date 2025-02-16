@@ -117,22 +117,37 @@ class apim inherits apim::params {
   # Copy the database scripts to the home
   if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
     if $enable_db_updates {
-      file { "/${db_scripts_files}":
-        ensure => present,
-        mode => '0655',
-        recurse => remote,
-        source => "puppet:///modules/${module_name}/${db_scripts_files}",
-        notify  => Service["${wso2_service_name}"],
-        require => Class["apim_common"]
-      }
-      exec { "run_db_scripts":
-        command => "/home/ubuntu/database/db_script.sh",
-        onlyif  => "test -f /home/ubuntu/database/db_script.sh",
-        path    => ['/usr/bin', '/bin'],
-        timeout => 600,               
-        logoutput => true,                      
-        notify  => Service["${wso2_service_name}"],
-        require => File["/${db_scripts_files}"]
+      if $db_script_create != $db_script_remove {
+        if $db_script_create {
+          file { "/${db_scripts_files}":
+            ensure => present,
+            mode => '0655',
+            recurse => remote,
+            source => "puppet:///modules/${module_name}/${db_scripts_files}",
+            notify  => Service["${wso2_service_name}"],
+            require => Class["apim_common"]
+          }
+          exec { "run_db_scripts":
+            command => "/home/ubuntu/database/db_script.sh create",
+            onlyif  => "test -f /home/ubuntu/database/db_script.sh",
+            path    => ['/usr/bin', '/bin'],
+            timeout => 600,               
+            logoutput => true,                      
+            notify  => Service["${wso2_service_name}"],
+            require => File["/${db_scripts_files}"]
+          }
+        }
+        if $db_script_remove {
+          exec { "run_db_scripts":
+            command => "/home/ubuntu/database/db_script.sh",
+            onlyif  => "test -f /home/ubuntu/database/db_script.sh remove",
+            path    => ['/usr/bin', '/bin'],
+            timeout => 600,               
+            logoutput => true,                      
+            notify  => Service["${wso2_service_name}"],
+            require => File["/${db_scripts_files}"]
+          }
+        }
       }
     }
   }

@@ -165,25 +165,25 @@ class apim_common inherits apim_common::params {
   }
 
   # Delete home apim folder
-  if $enable_db_updates {
-    exec { "detele-home-apim-folder":
-      command     => "rm -rf /home/ubuntu/apim",
-      path        => "/bin/",
-      subscribe   => Exec["stop-server"],
-      onlyif      => "test -d /home/ubuntu/apim",
-      refreshonly => true,
-    }
+  exec { "detele-home-apim-folder":
+    command     => "rm -rf /home/ubuntu/apim",
+    path        => "/bin/",
+    subscribe   => Exec["stop-server"],
+    onlyif      => "test -d /home/ubuntu/apim",
+    refreshonly => true,
   }
 
   # Delete home database folder
   if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
-    exec { "detele-database-folder":
-      command     => "rm -rf /home/ubuntu/database",
-      path        => "/bin/",
-      subscribe   => Exec["stop-server"],
-      onlyif      => "test -d /home/ubuntu/database",
-      refreshonly => true,
-    }
+      if $enable_db_updates {
+        exec { "detele-database-folder":
+          command     => "rm -rf /home/ubuntu/database",
+          path        => "/bin/",
+          subscribe   => Exec["stop-server"],
+          onlyif      => "test -d /home/ubuntu/database",
+          refreshonly => true,
+        }
+      }
   }
 
   # Unzip the binary and create setup
