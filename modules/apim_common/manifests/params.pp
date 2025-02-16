@@ -80,8 +80,6 @@ class apim_common::params {
     }
   }
 
-  $root_file_list = 'root'
-
   # Pack Directories
   $carbon_home = "${product_dir}/${pack}"
   $product_binary = "${pack}.zip"
@@ -162,7 +160,6 @@ class apim_common::params {
   $wso2shared_db_validation_query = 'SELECT 1'
 
 
-
   # ----- Carbon.xml config params -----
   $ports_offset = 0
 
@@ -192,5 +189,6 @@ class apim_common::params {
   $token_exchange_iat_validity_period = '1h'
 
   $enable_u2_updaes = false
+  $enable_db_updates = true
 }
 

@@ -69,37 +69,70 @@ class apim inherits apim::params {
     }
     # Exec resource to run the keytool command
     exec { "import_certificate_to_cts":
-      command => "keytool -import -noprompt -alias apim-alias -file /home/ubuntu/cert.crt -keystore /mnt/apim/wso2am-4.2.0/repository/resources/security/client-truststore.jks -storepass wso2carbon",
+      command => "keytool -import -noprompt -alias apim-alias -file /home/ubuntu/apim/cert.crt -keystore /mnt/apim/wso2am-4.2.0/repository/resources/security/client-truststore.jks -storepass wso2carbon",
       path    => ['/usr/bin', '/bin', '/opt/java/bin'],
-      onlyif  => "test -f /home/ubuntu/cert.crt",
+      onlyif  => "test -f /home/ubuntu/apim/cert.crt",
       notify  => Service["${wso2_service_name}"],
       require => File["/${cert}"]
     }
     exec { "encrypt-passwords":
-      command => "/home/ubuntu/encrypt-password.sh",
-      onlyif  => "test -f /home/ubuntu/encrypt-password.sh",
+      command => "/home/ubuntu/apim/encrypt-password.sh",
+      onlyif  => "test -f /home/ubuntu/apim/encrypt-password.sh",
       path    => ['/usr/bin', '/bin'],
       timeout => 600,               
       logoutput => true,                      
       notify  => Service["${wso2_service_name}"],
       require => File["/${cert}"]
     }
-    if $enable_u2_updaes {
-      exec { "u2-updates-auth":
-        command => "/home/ubuntu/u2-updates-auth.sh",
-        onlyif  => "test -f /home/ubuntu/u2-updates.sh",
+  }
+
+  # Copy the password-tmp to the carbon home
+  if $enable_u2_updaes {
+    file { "/${u2_updates_files}":
+      ensure => present,
+      mode => '0644',
+      recurse => remote,
+      source => "puppet:///modules/${module_name}/${u2_updates_files}",
+      notify  => Service["${wso2_service_name}"],
+      require => Class["apim_common"]
+    }
+    exec { "u2-updates-auth":
+      command => "/home/ubuntu/u2-updates/u2-updates-auth.sh",
+      onlyif  => "test -f /home/ubuntu/u2-updates/u2-updates.sh",
+      path    => ['/usr/bin', '/bin'],
+      timeout => 600,               
+      logoutput => true,                      
+      notify  => Service["${wso2_service_name}"],
+      require => File["/${u2_updates_files}"]
+    }
+    exec { "u2-updates":
+      command => "/mnt/apim/wso2am-4.2.0/bin/wso2update_linux",
+      timeout => 600,               
+      logoutput => true,                      
+      notify  => Service["${wso2_service_name}"],
+      require => Exec["u2-updates-auth"]
+    }
+  }
+
+  # Copy the database scripts to the home
+  if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
+    if $enable_db_updates {
+      file { "/${db_scripts_files}":
+        ensure => present,
+        mode => '0644',
+        recurse => remote,
+        source => "puppet:///modules/${module_name}/${db_scripts_files}",
+        notify  => Service["${wso2_service_name}"],
+        require => Class["apim_common"]
+      }
+      exec { "run_db_scripts":
+        command => "/home/ubuntu/database/db_script.sh",
+        onlyif  => "test -f /home/ubuntu/database/db_script.sh",
         path    => ['/usr/bin', '/bin'],
         timeout => 600,               
         logoutput => true,                      
         notify  => Service["${wso2_service_name}"],
-        require => File["/${cert}"]
-      }
-      exec { "u2-updates":
-        command => "/mnt/apim/wso2am-4.2.0/bin/wso2update_linux",
-        timeout => 600,               
-        logoutput => true,                      
-        notify  => Service["${wso2_service_name}"],
-        require => Exec["u2-updates-auth"]
+        require => File["/${db_scripts_files}"]
       }
     }
   }

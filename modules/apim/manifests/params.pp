@@ -31,8 +31,11 @@ class apim::params inherits apim_common::params {
     'repository/components/lib',
   ]
   $home_file_list = [
-    'home/ubuntu'
+    'home/ubuntu/apim'
   ]
+
+  $u2_updates_files = 'home/ubuntu/u2-updates'
+  $db_scripts_files = 'home/ubuntu/database'
 
   $password_file = 'encrypt'
 

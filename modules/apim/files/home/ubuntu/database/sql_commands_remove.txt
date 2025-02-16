@@ -1,0 +1,4 @@
+DROP USER 'apimdb_user'@'%';
+DROP USER 'shareddb_user'@'%';
+DROP DATABASE apim_db;
+DROP DATABASE shared_db;

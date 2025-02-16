@@ -98,14 +98,6 @@ class apim_common inherits apim_common::params {
     require => Exec["unpack-jdk"]
   }
 
-  file { "/${root_file_list}":
-    ensure => present,
-    mode => '0644',
-    recurse => remote,
-    source => "puppet:///modules/${module_name}/${root_file_list}",
-    notify  => Service["${wso2_service_name}"]
-  }
-
   /*
   * WSO2 Distribution
   */
@@ -161,44 +153,37 @@ class apim_common inherits apim_common::params {
     refreshonly => true,
   }
 
-  # delete the wso2-updates-folder
-  if $enable_u2_updaes {
-    exec { "delete-u2-update-pack":
-      command     => "rm -rf /root/.wso2-updates",
-      path        => "/bin/",
-      onlyif      => "/usr/bin/test -d /root/.wso2-updates",
-      subscribe   => Exec["stop-server"],
-      refreshonly => true,
-    }
-  }
-
   # delete the wso2-updates-folder in home
   if $enable_u2_updaes {
     exec { "delete-u2-update-pack":
-      command     => "rm -rf backup /home/ubuntu/backup /home/ubuntu/docker /home/ubuntu/dry-run /home/ubuntu/hotfixes /home/ubuntu/updates",
+      command     => "rm -rf backup /home/ubuntu/backup /home/ubuntu/docker /home/ubuntu/dry-run /home/ubuntu/hotfixes /home/ubuntu/updates /home/ubuntu/u2-updates /root/.wso2-updates",
       path        => "/bin/",
-      onlyif      => "/usr/bin/test -d /home/ubuntu/docker -a -d /home/ubuntu/dry-run -a -d /home/ubuntu/hotfixes -a -d /home/ubuntu/updates",
+      onlyif      => "/usr/bin/test -d /home/ubuntu/docker -a -d /home/ubuntu/dry-run -a -d /home/ubuntu/hotfixes -a -d /home/ubuntu/updates -a -d /home/ubuntu/u2-updates -a -d /root/.wso2-updates",
       subscribe   => Exec["stop-server"],
       refreshonly => true,
     }
   }
 
-  # Delete cert file
-  exec { "detele-cert":
-    command     => "rm -rf /home/ubuntu/cert.crt",
-    path        => "/bin/",
-    subscribe   => Exec["stop-server"],
-    onlyif      => "test -f /home/ubuntu/cert.crt",
-    refreshonly => true,
+  # Delete home apim folder
+  if $enable_db_updates {
+    exec { "detele-home-apim-folder":
+      command     => "rm -rf /home/ubuntu/apim",
+      path        => "/bin/",
+      subscribe   => Exec["stop-server"],
+      onlyif      => "test -d /home/ubuntu/apim",
+      refreshonly => true,
+    }
   }
 
-  # Delete script file
-  exec { "detele-script":
-    command     => "rm -rf /home/ubuntu/u2-update.sh",
-    path        => "/bin/",
-    subscribe   => Exec["stop-server"],
-    onlyif      => "test -f /home/ubuntu/u2-update.sh",
-    refreshonly => true,
+  # Delete home database folder
+  if $facts['ec2_metadata']['tags']['instance']['Node'] == 'One' {
+    exec { "detele-database-folder":
+      command     => "rm -rf /home/ubuntu/database",
+      path        => "/bin/",
+      subscribe   => Exec["stop-server"],
+      onlyif      => "test -d /home/ubuntu/database",
+      refreshonly => true,
+    }
   }
 
   # Unzip the binary and create setup
