@@ -189,6 +189,6 @@ class apim_common::params {
   $token_exchange_iat_validity_period = '1h'
 
   $enable_u2_updaes = false
-  $enable_db_updates = true
+  $enable_db_updates = false
 }
 
