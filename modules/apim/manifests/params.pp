@@ -43,6 +43,7 @@ class apim::params inherits apim_common::params {
   $file_removelist = []
   $db_script_create = true
   $db_script_remove = false
+  $enable_db_scripts = "true"
 
   # ----- Carbon.xml config params -----
   /*
