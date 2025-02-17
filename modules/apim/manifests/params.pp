@@ -55,6 +55,6 @@ class apim::params inherits apim_common::params {
   $hostname = 'control.apim-wso2.com'
 
   # ----- api-manager.xml config params -----
-  $oauth_configs_revoke_api_url = 'https://control.apim-wso2.com/revoke'
+  $oauth_configs_revoke_api_url = 'https://control.apim-wso2.com/oauth2/revoke'
   $throttle_config_policy_deployer_url = 'https://localhost:${mgt.transport.https.port}${carbon.context}services/'
 }
