@@ -18,7 +18,7 @@ type = "database_unique_id"
 
 [database.apim_db]
 type = "<%= @wso2am_db_type %>"
-url = "<%= @wso2am_db_url %>"
+url = "$secret{wso2am_db_url}"
 username = "$secret{wso2am_db_username}"
 password = "$secret{wso2am_db_password}"
 # validationQuery = "<%= @wso2am_db_validation_query %>"
@@ -29,7 +29,7 @@ driver="com.mysql.cj.jdbc.Driver"
 
 [database.shared_db]
 type = "<%= @wso2shared_db_type %>"
-url = "<%= @wso2shared_db_url %>"
+url = "$secret{wso2shared_db_url}"
 username = "$secret{wso2shared_db_username}"
 password = "$secret{wso2shared_db_password}"
 # validationQuery = "<%= @wso2shared_db_validation_query %>"
