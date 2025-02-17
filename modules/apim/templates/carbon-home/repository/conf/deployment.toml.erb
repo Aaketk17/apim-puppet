@@ -18,9 +18,12 @@ type = "database_unique_id"
 
 [database.apim_db]
 type = "<%= @wso2am_db_type %>"
-url = "$secret{wso2am_db_url}"
-username = "$secret{wso2am_db_username}"
-password = "$secret{wso2am_db_password}>"
+url = "jdbc:mysql://apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:3306/apim_db?useSSL=false"
+username = "apimdbadmin"
+password = "rterg56jg357df"
+# url = "$secret{wso2am_db_url}"
+# username = "$secret{wso2am_db_username}"
+# password = "$secret{wso2am_db_password}>"
 # validationQuery = "<%= @wso2am_db_validation_query %>"
 pool_options.maxActive = 100
 pool_options.maxWait = 30000
@@ -29,9 +32,12 @@ driver="com.mysql.cj.jdbc.Driver"
 
 [database.shared_db]
 type = "<%= @wso2shared_db_type %>"
-url = "$secret{wso2shared_db_url}"
-username = "$secret{wso2shared_db_username}"
-password = "$secret{wso2shared_db_password}"
+url = "jdbc:mysql://apim-mysql-db.cgk7myovdx4l.ap-south-1.rds.amazonaws.com:3306/shared_db?useSSL=false"
+username = "shareddbadmin"
+password = "bnguilui57df"
+# url = "$secret{wso2shared_db_url}"
+# username = "$secret{wso2shared_db_username}"
+# password = "$secret{wso2shared_db_password}"
 # validationQuery = "<%= @wso2shared_db_validation_query %>"
 pool_options.maxActive = 100
 pool_options.maxWait = 10000
