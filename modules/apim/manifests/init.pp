@@ -128,7 +128,7 @@ class apim inherits apim::params {
             require => Class["apim_common"]
           }
           exec { "run_db_scripts":
-            command => "/home/ubuntu/database/db_script.sh create ${enable_db_scripts}",
+            command => "/home/ubuntu/database/db_script.sh create ${enable_sql_scripts}",
             onlyif  => "test -f /home/ubuntu/database/db_script.sh",
             path    => ['/usr/bin', '/bin'],
             timeout => 600,               
