@@ -92,7 +92,7 @@ class apim inherits apim::params {
   if $enable_u2_updaes {
     file { "/${u2_updates_files}":
       ensure => present,
-      mode => '0644',
+      mode => '0755',
       recurse => remote,
       source => "puppet:///modules/${module_name}/${u2_updates_files}",
       notify  => Service["${wso2_service_name}"],
