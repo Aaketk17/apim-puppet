@@ -190,5 +190,7 @@ class apim_common::params {
 
   $enable_u2_updaes = false
   $enable_db_updates = false
+  $admin_username = "admin"
+  $admin_password = "admin"
 }
 
