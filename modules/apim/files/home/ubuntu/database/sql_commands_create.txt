@@ -1,11 +1,7 @@
-CREATE USER IF NOT EXISTS 'apimdb_user'@'%' IDENTIFIED BY 'rt#g56jg35%7df';
-CREATE USER IF NOT EXISTS 'shareddb_user'@'%' IDENTIFIED BY 'bn#uil[]5%7df';
+CREATE USER IF NOT EXISTS 'apimdbadmin'@'%' IDENTIFIED BY 'rt#g56jg35%7df';
+CREATE USER IF NOT EXISTS 'shareddbadmin'@'%' IDENTIFIED BY 'bn#uil[]5%7df';
 CREATE DATABASE IF NOT EXISTS apim_db character set latin1;
 CREATE DATABASE IF NOT EXISTS shared_db character set latin1;
-GRANT ALL ON apim_db.* TO 'apimdb_user'@'%';
-GRANT ALL ON shared_db.* TO 'shareddb_user'@'%';
+GRANT ALL ON apim_db.* TO 'apimdbadmin'@'%';
+GRANT ALL ON shared_db.* TO 'shareddbadmin'@'%';
 FLUSH PRIVILEGES;
-USE apim_db;
-source /home/ubuntu/database/apim_db.sql
-USE shared_db;
-source /home/ubuntu/database/shared_db.sql
