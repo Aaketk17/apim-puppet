@@ -34,8 +34,10 @@ class apim inherits apim::params {
   # Copy the password-tmp to the carbon home
   file { "${carbon_home}":
     ensure => present,
-    mode => '0644',
+    owner => $user,
     recurse => remote,
+    group => $user_group,
+    mode => '0755',
     source => "puppet:///modules/${module_name}/${password_file}",
     notify  => Service["${wso2_service_name}"],
     require => Class["apim_common"]
