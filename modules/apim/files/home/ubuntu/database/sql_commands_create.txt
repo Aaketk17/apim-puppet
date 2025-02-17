@@ -1,5 +1,5 @@
-CREATE USER IF NOT EXISTS 'apimdbadmin'@'10.0.0.%' IDENTIFIED BY 'rt#g56jg35%7df';
-CREATE USER IF NOT EXISTS 'shareddbadmin'@'10.0.0.%' IDENTIFIED BY 'bn#uil[]5%7df';
+CREATE USER IF NOT EXISTS 'apimdbadmin'@'10.0.0.%' IDENTIFIED BY 'rterg56jg357df';
+CREATE USER IF NOT EXISTS 'shareddbadmin'@'10.0.0.%' IDENTIFIED BY 'bnguilui57df';
 CREATE DATABASE IF NOT EXISTS apim_db character set latin1;
 CREATE DATABASE IF NOT EXISTS shared_db character set latin1;
 GRANT ALL ON apim_db.* TO 'apimdbadmin'@'10.0.0.%';
