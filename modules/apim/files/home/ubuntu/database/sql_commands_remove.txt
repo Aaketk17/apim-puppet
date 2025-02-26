@@ -1,4 +1,4 @@
-DROP USER 'apimdbadmin'@'%';
-DROP USER 'shareddbadmin'@'%';
+DROP USER 'apimdbadmin'@'10.0.0.%';
+DROP USER 'shareddbadmin'@'10.0.0.%';
 DROP DATABASE apim_db;
 DROP DATABASE shared_db;
